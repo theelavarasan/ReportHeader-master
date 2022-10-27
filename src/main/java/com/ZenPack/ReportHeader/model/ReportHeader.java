@@ -43,6 +43,6 @@ public class ReportHeader implements Serializable {
 	@Column(name = "COLUMNORDER", columnDefinition = "jsonb")
 	private List<String> columnOrder;
 
-	public ReportHeader(long l, String zen1) {
-	}
+//	public ReportHeader(long l, String zen1) {
+//	}
 }

@@ -48,6 +48,7 @@ public class ReportHeaderServiceTest {
         reportHeader.setReportId(1L);
         reportHeader.setReportName("Zen1");
 
+
         ReportHeader reportHeader1 = new ReportHeader();
         reportHeader1.setReportId(2L);
         reportHeader1.setReportName("Zen2");
@@ -86,10 +87,20 @@ public class ReportHeaderServiceTest {
                 .reportId(1L)
                 .reportName("ZenPack")
                 .build();
+        HeaderInfoDto headerInfoDto = new HeaderInfoDto();
+        headerInfoDto.setActualName("Zen_Pack");
+        headerInfoDto.setHide(true);
+        headerInfoDto.setDisplayName("ZenPack");
+        headerInfoDto.setDataType("String");
         ReportHeader reportHeader1 = ReportHeader.builder()
                 .reportId(2L)
                 .reportName("ZenPack1")
                 .build();
+        HeaderInfoDto headerInfoDto1 = new HeaderInfoDto();
+        headerInfoDto1.setActualName("created_Date");
+        headerInfoDto1.setHide(true);
+        headerInfoDto1.setDisplayName("Created Date");
+        headerInfoDto1.setDataType("String");
         given(repository.findAll()).willReturn(Arrays.asList(reportHeader,reportHeader1));
 
 
@@ -99,16 +110,5 @@ public class ReportHeaderServiceTest {
         assertThat(list.size()).isEqualTo(2);
     }
 
-    @Test
-    void givenReportId_whenDeleteReport_thenNothing() {
 
-        Long reportId = 2L;
-        when(repository.findById(anyLong())).thenReturn(Optional.of(reportHeader));
-        doNothing().when(repository).delete(ArgumentMatchers.any(ReportHeader.class));
-
-        service.deleteReportHeaderById(reportId);
-
-        verify(repository, times(1)).delete(reportHeader);
-
-    }
 }
